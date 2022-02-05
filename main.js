@@ -5,7 +5,6 @@ class Storage {
   }
 
   get() {
-    console.log(this._type.getItem(this._name) )
     return this._type.getItem(this._name)
   }
 
