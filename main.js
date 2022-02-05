@@ -18,30 +18,20 @@ class Storage {
   }
 
   isEmpty() {
-    let isEmptyValue = this._type.getItem(this._name) === null || undefined;
+    let isEmptyValue = this.get() === null || 'undefined'; 
 
       if(isEmptyValue) {
-        console.log(true)
         return true
       }
 
-      console.log(false)
       return false
   }
 
-  get storageInfo() {
-    const result = `name: ${this._name}\ntype: ${this._type}`;
-    console.log(result)
-    return result
-  }
-
   get name() {
-    console.log(this._name)
     return this._name
   }
 
   get type() {
-    console.log(this._type)
     return (this._type)
   }
 
@@ -52,6 +42,7 @@ class Storage {
 
   set type(value) {
     const toLowerType = value.toLowerCase();
+
     switch(toLowerType) {
       case 'local':
         this._type = localStorage;
