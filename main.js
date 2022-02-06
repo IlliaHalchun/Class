@@ -1,7 +1,8 @@
 class Storage {
-  constructor(name, type = 'local') {
+  constructor(name, options) {
     this.name = name;
-    this.type = type;
+    this.type = options.storageType;
+    this.defaultValue = options.defaultValue;
   }
 
   get() {
@@ -17,13 +18,13 @@ class Storage {
   }
 
   isEmpty() {
-    let isEmptyValue = this.get() === null || 'undefined'; 
+    let isEmptyValue = this.get() === null || this.get() === 'undefined'; 
 
-      if(isEmptyValue) {
-        return true
-      }
+    if(isEmptyValue) {
+      return true
+    }
 
-      return false
+    return false
   }
 
   get name() {
@@ -37,6 +38,12 @@ class Storage {
   set name(value) {
     const toLowerName = value.toLowerCase();
     this._name = toLowerName;
+  }
+
+  set defaultValue(value) {
+    if(value === undefined || null) return
+    this.set(value);
+    this._defaultValue = value;
   }
 
   set type(value) {
@@ -55,8 +62,11 @@ class Storage {
   }
 }
 
+let localFirst = new Storage('first', {
+  defaultValue: 'default',
+  storageType: 'local'
+})
 
-let names = new Storage('names')
-
-let types = new Storage('types', 'session')
-
+let sessionSecond = new Storage('second', {
+  storageType: 'session'
+})
