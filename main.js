@@ -1,12 +1,13 @@
 const defaultOptions = {
   type: 'local',
+  defaultValue: 'undefined'
 }
 
 class Storage {
   constructor(name, options = defaultOptions) {
     this.name = name;
     this.type = options.type;
-    this.defaultValue = options.defaultValue || 'undefined';
+    this.defaultValue = options.defaultValue;
   }
 
   get() {
