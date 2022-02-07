@@ -38,11 +38,6 @@ class Storage {
     this._name = value.toLowerCase();
   }
 
-  set defaultValue(value) {
-    this._defaultValue = value;
-    this.set(value)
-  }
-
   set type(value) {
     const toLowerType = value.toLowerCase();
 
@@ -59,13 +54,13 @@ class Storage {
   }
 }
 
-let localFirst = generateStorage('first', {
-  defaultValue: 'default',
-  type: 'local'
-} )
-
 function generateStorage(name, options) {
   const storage = new Storage(name, options);
   storage.set(options.defaultValue)
   return storage
 }
+
+let localFirst = generateStorage('first', {
+  defaultValue: 'default',
+  type: 'local'
+} )
