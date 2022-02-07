@@ -59,16 +59,13 @@ class Storage {
   }
 }
 
-let localFirst = new Storage('first', {
+let localFirst = generateStorage('first', {
   defaultValue: 'default',
   type: 'local'
-})
+} )
 
-let sessionSecond = new Storage('second', {
-  type: 'session'
-})
-
-let sessionThird = new Storage('second', {
-  defaultValue: 'default',
-  type: 'session'
-})
+function generateStorage(name, options) {
+  const storage = new Storage(name, options);
+  storage.set(options.defaultValue)
+  return storage
+}
